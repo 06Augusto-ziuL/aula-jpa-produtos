@@ -30,4 +30,15 @@ public class ProdutoController {
     public Produto buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
+
+    @PutMapping("/{id}")
+    public Produto atualizar(@PathVariable Long id, @RequestBody Produto produto) {
+        return service.atualizar(id, produto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable Long id) {
+        service.excluir(id);
+    }
 }

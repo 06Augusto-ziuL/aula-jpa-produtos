@@ -26,4 +26,20 @@ public class ProdutoService {
                 .orElseThrow(() ->
                         new IllegalArgumentException("Produto nao encontrado"));
     }
+
+    public Produto atualizar(Long id, Produto produtoAtualizado) {
+        Produto produto = buscarPorId(id);
+
+        produto.setNome(produtoAtualizado.getNome());
+        produto.setPreco(produtoAtualizado.getPreco());
+        produto.setQuantidadeEstoque(produtoAtualizado.getQuantidadeEstoque());
+        produto.setAtivo(produtoAtualizado.isAtivo());
+
+        return repository.save(produto);
+    }
+
+    public void excluir(Long id) {
+        Produto produto = buscarPorId(id);
+        repository.delete(produto);
+    }
 }
